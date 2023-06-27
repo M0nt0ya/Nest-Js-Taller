@@ -32,6 +32,13 @@ export class AuthorEntity {
     })
     deleteAt: Date;
 
+    //RELACIONES
+
+    @ManyToOne(() => BookEntity, (book) => book.author)
+    @JoinColumn({name:'book_id'})
+    book: BookEntity;
+
+
     @Column('varchar', {
         name: 'name',
         nullable: false,
@@ -63,3 +70,11 @@ export class AuthorEntity {
     })
     books: BookEntity;
 }
+function ManyToOne(arg0: () => typeof BookEntity, arg1: (book: any) => any): (target: AuthorEntity, propertyKey: "book") => void {
+    throw new Error('Function not implemented.');
+}
+
+function JoinColumn(arg0: { name: string; }): (target: AuthorEntity, propertyKey: "book") => void {
+    throw new Error('Function not implemented.');
+}
+

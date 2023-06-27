@@ -6,6 +6,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
+import { AuthorEntity } from './author.model';
   
   @Entity('Books', { schema: 'libros' })
   export class BookEntity {
@@ -31,6 +32,15 @@ import {
     })
     deleteAt: Date;
   
+
+    //RELACIONES
+
+    @OneToMany(() => AuthorEntity, (author) => author.book)
+    @JoinColumn({name:'author_id'})
+    author: AuthorEntity;
+ 
+    ///
+
     @Column('varchar', {
       name: 'name',
       nullable: false,
@@ -51,4 +61,12 @@ import {
       })
       Publication: string;
   }
+
+function OneToMany(arg0: () => any, arg1: (product: any) => any): (target: BookEntity, propertyKey: "product") => void {
+  throw new Error('Function not implemented.');
+}
+
+function JoinColumn(arg0: { name: string; }): (target: BookEntity, propertyKey: "product") => void {
+  throw new Error('Function not implemented.');
+}
   
